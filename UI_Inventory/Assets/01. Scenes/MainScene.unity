@@ -135,7 +135,7 @@ GameObject:
   - component: {fileID: 1384014}
   - component: {fileID: 1384013}
   m_Layer: 5
-  m_Name: Value
+  m_Name: AtkValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -933,6 +933,7 @@ GameObject:
   - component: {fileID: 181634920}
   - component: {fileID: 181634919}
   - component: {fileID: 181634918}
+  - component: {fileID: 181634922}
   m_Layer: 5
   m_Name: UIManager
   m_TagString: Untagged
@@ -1023,6 +1024,18 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &181634922
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181634917}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 159e6b0d518354b49921960e48e943b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &270222919
 GameObject:
   m_ObjectHideFlags: 0
@@ -1397,6 +1410,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 355752300}
+  - component: {fileID: 355752301}
   m_Layer: 5
   m_Name: UIInventory
   m_TagString: Untagged
@@ -1428,6 +1442,19 @@ RectTransform:
   m_AnchoredPosition: {x: -40, y: 20}
   m_SizeDelta: {x: 200, y: 210}
   m_Pivot: {x: 1, y: 0.5}
+--- !u!114 &355752301
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 355752299}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2480e8f5bd8a65d4796d3981bc192ac7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  backButton: {fileID: 1967148861}
 --- !u!1 &386371416
 GameObject:
   m_ObjectHideFlags: 0
@@ -1687,7 +1714,7 @@ GameObject:
   - component: {fileID: 518616504}
   - component: {fileID: 518616503}
   m_Layer: 5
-  m_Name: Nickname
+  m_Name: Name
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2047,7 +2074,7 @@ GameObject:
   - component: {fileID: 610772100}
   - component: {fileID: 610772099}
   m_Layer: 5
-  m_Name: ArmorImage
+  m_Name: DefImage
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2439,8 +2466,9 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 732941384}
+  - component: {fileID: 732941385}
   m_Layer: 5
-  m_Name: MainMenu
+  m_Name: UIMainMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2460,7 +2488,6 @@ RectTransform:
   m_Children:
   - {fileID: 2118015721}
   - {fileID: 1117457331}
-  - {fileID: 1377000849}
   - {fileID: 1863350081}
   - {fileID: 1513228240}
   m_Father: {fileID: 1807850783}
@@ -2470,6 +2497,28 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &732941385
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 732941383}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 799be7ccb7edad0408cc2d1558392dbb, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  grade: {fileID: 108583624}
+  name: {fileID: 518616503}
+  level: {fileID: 325152029}
+  exp: {fileID: 2534821}
+  expText: {fileID: 1509305325}
+  desc: {fileID: 179057070}
+  gold: {fileID: 121061677}
+  buttons: {fileID: 1513228239}
+  statusButton: {fileID: 695611983}
+  inventoryButton: {fileID: 270222921}
 --- !u!1 &738509862
 GameObject:
   m_ObjectHideFlags: 0
@@ -2592,6 +2641,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 949405631}
+  - component: {fileID: 949405632}
   m_Layer: 5
   m_Name: UIStatus
   m_TagString: Untagged
@@ -2625,6 +2675,23 @@ RectTransform:
   m_AnchoredPosition: {x: -40, y: 20}
   m_SizeDelta: {x: 200, y: 210}
   m_Pivot: {x: 1, y: 0.5}
+--- !u!114 &949405632
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949405630}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4ee1472bca9e6545b13dbcb93ef809a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  atk: {fileID: 1384013}
+  def: {fileID: 2030413056}
+  hp: {fileID: 1400721634}
+  crt: {fileID: 1073225683}
+  backButton: {fileID: 1394965530}
 --- !u!1 &1058902656
 GameObject:
   m_ObjectHideFlags: 0
@@ -2846,7 +2913,7 @@ GameObject:
   - component: {fileID: 1073225684}
   - component: {fileID: 1073225683}
   m_Layer: 5
-  m_Name: Value
+  m_Name: CriValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3395,41 +3462,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1297352436}
   m_CullTransparentMesh: 1
---- !u!1 &1377000848
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 1377000849}
-  m_Layer: 5
-  m_Name: GameObject
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!224 &1377000849
-RectTransform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1377000848}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 732941384}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.5}
-  m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 100, y: 100}
-  m_Pivot: {x: 0.5, y: 0.5}
 --- !u!1 &1394965528
 GameObject:
   m_ObjectHideFlags: 0
@@ -3697,7 +3729,7 @@ GameObject:
   - component: {fileID: 1400721635}
   - component: {fileID: 1400721634}
   m_Layer: 5
-  m_Name: Value
+  m_Name: HpValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3904,7 +3936,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1415799406}
   m_Layer: 5
-  m_Name: Armor
+  m_Name: Def
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -4290,7 +4322,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1513228240
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4473,7 +4505,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1807850783}
   m_Layer: 5
-  m_Name: UIMainMenu
+  m_Name: MainMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -5300,7 +5332,7 @@ GameObject:
   - component: {fileID: 2030413057}
   - component: {fileID: 2030413056}
   m_Layer: 5
-  m_Name: Value
+  m_Name: DefValue
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
