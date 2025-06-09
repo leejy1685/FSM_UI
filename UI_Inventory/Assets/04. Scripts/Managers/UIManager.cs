@@ -17,7 +17,7 @@ public class UIManager : MonoBehaviour
     }
     
     private BaseUI _currentState;
-
+    
     public MainMenuUI MainMenuUI { get; private set; }
     public StatusUI StatusUI{ get; private set; }
     public InventoryUI InventoryUI{ get; private set; }
@@ -52,6 +52,7 @@ public class UIManager : MonoBehaviour
 
     public void ChangeState(BaseUI state)
     {
+
         _currentState.Exit();
         _currentState = state;
         _currentState.Enter();

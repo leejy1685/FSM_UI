@@ -12,6 +12,7 @@ public class CharacterAnimation : MonoBehaviour
     private void Awake()
     {
         _animator = GetComponent<Animator>();
+        _animator.speed = 0.1f;
     }
 
     public void Jump()

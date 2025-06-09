@@ -51,7 +51,7 @@ public class MainMenuUI : BaseUI
         exp.value = (float)_player.Data.exp / _player.Data.maxExp;
         expText.text = $"{_player.Data.exp} / {_player.Data.maxExp}";
         desc.text = _player.Data.desc;
-        gold.text = _player.Data.gold.ToString("C");
+        gold.text = string.Format("{0:N0}",_player.Data.gold);
     }
 
     private void OpenStatus()

@@ -21,6 +21,7 @@ public class StatusUI : BaseUI
         base.Init(uiManager);
 
         _animator = GetComponent<Animator>();
+        _animator.speed = 0.1f;
         _player = GameManager.Instance.Player;
         
         //버튼 등록;
@@ -37,6 +38,12 @@ public class StatusUI : BaseUI
     {
         StartCoroutine(ExitAnim_Coroutine());
     }
+    IEnumerator ExitAnim_Coroutine()
+    {
+        _animator.SetTrigger(_uiManager.ExitAnim);
+        yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
+        gameObject.SetActive(false);
+    }
 
     public override void UpdateUI()
     {
@@ -51,12 +58,6 @@ public class StatusUI : BaseUI
         _uiManager.ChangeState(_uiManager.MainMenuUI);
     }
     
-    IEnumerator ExitAnim_Coroutine()
-    {
-        _animator.SetTrigger(_uiManager.ExitAnim);
-        yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
-        gameObject.SetActive(false);
-    }
     
     
 }

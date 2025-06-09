@@ -46,7 +46,7 @@ public class InventoryUI : BaseUI
         
         _player.CharacterAnimation.Jump();
         yield return new WaitForSeconds(_player.CharacterAnimation.AnimationLength());
-        _animator.speed = 1f;
+        _animator.speed = 0.1f;
     }
     
     public override void Exit()
