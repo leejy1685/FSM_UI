@@ -13,13 +13,14 @@ public class StatusUI : BaseUI
 
     [SerializeField] private Button backButton;
     
-    
+    private Animator _animator;
     private Character _player;
     
     public override void Init(UIManager uiManager)
     {
         base.Init(uiManager);
 
+        _animator = GetComponent<Animator>();
         _player = GameManager.Instance.Player;
         
         //버튼 등록;
@@ -34,7 +35,7 @@ public class StatusUI : BaseUI
     
     public override void Exit()
     {
-        gameObject.SetActive(false);
+        StartCoroutine(ExitAnim_Coroutine());
     }
 
     public override void UpdateUI()
@@ -48,6 +49,13 @@ public class StatusUI : BaseUI
     private void OpenMainMenu()
     {
         _uiManager.ChangeState(_uiManager.MainMenuUI);
+    }
+    
+    IEnumerator ExitAnim_Coroutine()
+    {
+        _animator.SetTrigger(_uiManager.ExitAnim);
+        yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
+        gameObject.SetActive(false);
     }
     
     

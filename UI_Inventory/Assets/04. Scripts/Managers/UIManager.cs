@@ -32,9 +32,11 @@ public class UIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-
-
     }
+    
+    private const string EXITANIM = "IsExit";
+    public string ExitAnim {get => EXITANIM; }
+    
     private void Start()
     {
         MainMenuUI = GetComponentInChildren<MainMenuUI>(true);

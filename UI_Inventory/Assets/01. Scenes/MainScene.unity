@@ -2821,6 +2821,7 @@ GameObject:
   m_Component:
   - component: {fileID: 949405631}
   - component: {fileID: 949405632}
+  - component: {fileID: 949405633}
   m_Layer: 5
   m_Name: UIStatus
   m_TagString: Untagged
@@ -2871,6 +2872,27 @@ MonoBehaviour:
   hp: {fileID: 1400721634}
   crt: {fileID: 1073225683}
   backButton: {fileID: 1394965530}
+--- !u!95 &949405633
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 949405630}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 266bec634f0ac854692dabff9e7d8e39, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1058902656
 GameObject:
   m_ObjectHideFlags: 0
