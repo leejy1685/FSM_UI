@@ -21,25 +21,23 @@ public class StatusUI : BaseUI
         base.Init(uiManager);
 
         _player = GameManager.Instance.Player;
-
-        UpdateStatus();
         
         //버튼 등록;
         backButton.onClick.AddListener(OpenMainMenu);
     }
 
-    protected override UIState GetState()
+    public override void Enter()
     {
-        return UIState.Status;
+        UpdateUI();
+        gameObject.SetActive(true);
+    }
+    
+    public override void Exit()
+    {
+        gameObject.SetActive(false);
     }
 
-    public override void SetActive(UIState state)
-    {
-        UpdateStatus();
-        base.SetActive(state);
-    }
-
-    public void UpdateStatus()
+    public override void UpdateUI()
     {
         atk.text = _player.Data.atk.ToString() + (_player.EquippedWeapon ? $" (+ {_player.EquippedWeapon.weaponData.atk})" : "");
         crt.text = _player.Data.cri.ToString() + (_player.EquippedWeapon ? $" (+ {_player.EquippedWeapon.weaponData.cri})" : "");
@@ -49,7 +47,7 @@ public class StatusUI : BaseUI
     
     private void OpenMainMenu()
     {
-        _uiManager.ChangeState(UIState.MainMenu);
+        _uiManager.ChangeState(_uiManager.MainMenuUI);
     }
     
     

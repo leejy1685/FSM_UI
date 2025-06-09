@@ -28,13 +28,36 @@ public class InventoryUI : BaseUI
         
         backButton.onClick.AddListener(OpenMainMenu);
     }
+    
 
-    protected override UIState GetState()
+    public override void Enter()
     {
-        return UIState.Inventory;
+        UpdateUI();
+        gameObject.SetActive(true);
+    }
+    
+    public override void Exit()
+    {
+        gameObject.SetActive(false);
     }
 
-    
+    public override void UpdateUI()
+    {
+        for (int i = 0; i < _slots.Count; i++)
+        {
+            if(_player.EquippedWeapon == _slots[i].Item && _slots[i].Item != null) 
+                _slots[i].SetEquippedIcon(true);
+            else if(_player.EquippedArmor == _slots[i].Item && _slots[i].Item != null)
+                _slots[i].SetEquippedIcon(true);
+            else
+                _slots[i].SetEquippedIcon(false);
+        }
+    }
+    private void OpenMainMenu()
+    {
+        _uiManager.ChangeState(_uiManager.MainMenuUI);
+    }
+
     //개선 여지 다수
     private void SetSlot()
     {
@@ -64,30 +87,6 @@ public class InventoryUI : BaseUI
                 slotUI.SetItem(_player.Inventory[i]);
             
             _slots.Add(slotUI);
-        }
-    }
-    
-    public override void SetActive(UIState state)
-    {
-        UpdateInventory();
-        base.SetActive(state);
-    }
-
-    private void OpenMainMenu()
-    {
-        _uiManager.ChangeState(UIState.MainMenu);
-    }
-
-    public void UpdateInventory()
-    {
-        for (int i = 0; i < _slots.Count; i++)
-        {
-            if(_player.EquippedWeapon == _slots[i].Item && _slots[i].Item != null) 
-                _slots[i].SetEquippedIcon(true);
-            else if(_player.EquippedArmor == _slots[i].Item && _slots[i].Item != null)
-                _slots[i].SetEquippedIcon(true);
-            else
-                _slots[i].SetEquippedIcon(false);
         }
     }
 }

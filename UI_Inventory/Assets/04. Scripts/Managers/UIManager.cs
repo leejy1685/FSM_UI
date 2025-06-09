@@ -1,17 +1,4 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using Unity.VisualScripting;
 using UnityEngine;
-using UnityEngine.XR;
-
-public enum UIState
-{
-    MainMenu,
-    Status,
-    Inventory
-}
-    
     
 public class UIManager : MonoBehaviour
 {
@@ -29,11 +16,11 @@ public class UIManager : MonoBehaviour
         }
     }
     
-    private UIState _currentState;
-    
-    private MainMenuUI _mainMenuUI;
-    private StatusUI _statusUI;
-    private InventoryUI _inventoryUI;
+    private BaseUI _currentState;
+
+    public MainMenuUI MainMenuUI { get; private set; }
+    public StatusUI StatusUI{ get; private set; }
+    public InventoryUI InventoryUI{ get; private set; }
 
     private void Awake()
     {
@@ -50,39 +37,27 @@ public class UIManager : MonoBehaviour
     }
     private void Start()
     {
-        _mainMenuUI = GetComponentInChildren<MainMenuUI>(true);
-        _mainMenuUI.Init(this);
-        _statusUI = GetComponentInChildren<StatusUI>(true);
-        _statusUI.Init(this);
-        _inventoryUI = GetComponentInChildren<InventoryUI>(true);
-        _inventoryUI.Init(this);
+        MainMenuUI = GetComponentInChildren<MainMenuUI>(true);
+        MainMenuUI.Init(this);
+        StatusUI = GetComponentInChildren<StatusUI>(true);
+        StatusUI.Init(this);
+        InventoryUI = GetComponentInChildren<InventoryUI>(true);
+        InventoryUI.Init(this);
 
-        ChangeState(UIState.MainMenu);
+        _currentState = MainMenuUI;
+        ChangeState(MainMenuUI);
     }
 
-    public void ChangeState(UIState state)
+    public void ChangeState(BaseUI state)
     {
+        _currentState.Exit();
         _currentState = state;
-        
-        _mainMenuUI.SetActive(_currentState);
-        _statusUI.SetActive(_currentState);
-        _inventoryUI.SetActive(_currentState);
+        _currentState.Enter();
     }
 
     public void UpdateUI()
     {
-        switch (_currentState)
-        {
-            case UIState.MainMenu:
-                _mainMenuUI.UpdatePlayerInfo();
-                break;
-            case UIState.Inventory:
-                _inventoryUI.UpdateInventory();
-                break;
-            case UIState.Status:
-                _statusUI.UpdateStatus();
-                break;
-        }
+        _currentState.UpdateUI();
     }
 
 

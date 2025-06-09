@@ -25,27 +25,25 @@ public class MainMenuUI : BaseUI
     {
         base.Init(uiManager);
 
-
         _player = GameManager.Instance.Player;
-        UpdatePlayerInfo();
         
         //버튼 등록
         statusButton.onClick.AddListener(OpenStatus);
         inventoryButton.onClick.AddListener(OpenInventory);
     }
 
-
-    protected override UIState GetState()
+    public override void Enter()
     {
-        return UIState.MainMenu;
+        UpdateUI();
+        buttons.SetActive(true);
     }
 
-    public override void SetActive(UIState state)
+    public override void Exit()
     {
-        buttons.SetActive(GetState() == state);
+        buttons.SetActive(false);
     }
 
-    public void UpdatePlayerInfo()
+    public override void UpdateUI()
     {
         grade.text = _player.Data.grade;
         name.text = _player.Data.name;
@@ -58,10 +56,10 @@ public class MainMenuUI : BaseUI
 
     private void OpenStatus()
     {
-        _uiManager.ChangeState(UIState.Status);
+        _uiManager.ChangeState(_uiManager.StatusUI);
     }
     private void OpenInventory()
     {
-        _uiManager.ChangeState(UIState.Inventory);
+        _uiManager.ChangeState(_uiManager.InventoryUI);
     }
 }
