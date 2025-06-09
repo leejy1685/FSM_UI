@@ -11,22 +11,24 @@ public class InventoryUI : BaseUI
     [SerializeField] private GameObject slots;
     [SerializeField] private GameObject slot;
 
-    [SerializeField] private int slotCount = 12;
     [SerializeField] private float slotInterval = 5f;
 
+    private int _slotCount;
     private List<SlotUI> _slots = new List<SlotUI>();
     private Character _player;
     private Animator _animator;
+    
     
     public override void Init(UIManager uiManager)
     {
         base.Init(uiManager);
 
         _animator = GetComponent<Animator>();
+        
         _player = GameManager.Instance.Player;
-
+        _slotCount = _player.InventorySize;
+        
         SetSlot();
-        inventorySize.text = $"{_slots.Count} / {slotCount}";
         
         backButton.onClick.AddListener(OpenMainMenu);
     }
@@ -38,16 +40,35 @@ public class InventoryUI : BaseUI
         gameObject.SetActive(true);
         StartCoroutine(EnterAnim_Coroutine());
     }
+    IEnumerator EnterAnim_Coroutine()
+    {
+        _animator.speed = 0;
+        
+        _player.CharacterAnimation.Jump();
+        yield return new WaitForSeconds(_player.CharacterAnimation.AnimationLength());
+        _animator.speed = 1f;
+    }
     
     public override void Exit()
     {
         StartCoroutine(ExitAnim_Coroutine());
     }
+    IEnumerator ExitAnim_Coroutine()
+    {
+        _animator.SetTrigger(_uiManager.ExitAnim);
+        yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
+        gameObject.SetActive(false);
+    }
 
     public override void UpdateUI()
     {
+        inventorySize.text = $"{_player.Inventory.Count} / {_slotCount}";
+        
         for (int i = 0; i < _slots.Count; i++)
         {
+            if (i < _player.Inventory.Count)
+                _slots[i].SetItem(_player.Inventory[i]);
+            
             if(_player.EquippedWeapon == _slots[i].Item && _slots[i].Item != null) 
                 _slots[i].SetEquippedIcon(true);
             else if(_player.EquippedArmor == _slots[i].Item && _slots[i].Item != null)
@@ -60,23 +81,7 @@ public class InventoryUI : BaseUI
     {
         _uiManager.ChangeState(_uiManager.MainMenuUI);
     }
-
-    IEnumerator EnterAnim_Coroutine()
-    {
-        _animator.speed = 0;
-        
-        _player.CharacterAnimation.Jump();
-        yield return new WaitForSeconds(_player.CharacterAnimation.AnimationLength());
-        _animator.speed = 1f;
-    }
     
-    IEnumerator ExitAnim_Coroutine()
-    {
-        _animator.SetTrigger(_uiManager.ExitAnim);
-        yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
-        gameObject.SetActive(false);
-    }
-
     //개선 여지
     private void SetSlot()
     {
@@ -88,10 +93,10 @@ public class InventoryUI : BaseUI
         //스크롤 뷰 사이즈 변경
         RectTransform slotsRect = slots.GetComponent<RectTransform>();
         Vector2 slotsSize = slotsRect.sizeDelta;
-        float slotsHeight = (height+slotInterval) * (slotCount / 3);
+        float slotsHeight = (height+slotInterval) * (_slotCount / 3);
         slotsRect.sizeDelta = new Vector2(slotsSize.x, slotsHeight);
         
-        for (int i = 0; i < slotCount; i++)
+        for (int i = 0; i < _slotCount; i++)
         {
             //슬롯 배치
             GameObject go = Instantiate(slot,slots.transform);

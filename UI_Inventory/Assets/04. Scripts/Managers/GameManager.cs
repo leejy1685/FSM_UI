@@ -28,6 +28,8 @@ public class GameManager : MonoBehaviour
     [SerializeField] private CharacterData playerData;
     
     [SerializeField] private ItemData[] itemData;
+
+    [SerializeField] private ItemData testItem;
     
     private void Awake()
     {
@@ -43,7 +45,16 @@ public class GameManager : MonoBehaviour
         _player = FindAnyObjectByType<Character>();
         SetData();
     }
-    
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            _player.AddItem(testItem);
+            UIManager.Instance.UpdateUI();
+        }
+    }
+
     public void SetData()
     {
         _player.SetData(playerData, itemData);
@@ -56,7 +67,6 @@ public class GameManager : MonoBehaviour
         
         //UI 갱신
         UIManager.Instance.UpdateUI();
-        
     }
 
     public void UnequipItem(ItemData item)

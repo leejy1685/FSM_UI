@@ -41,8 +41,6 @@ public class SlotUI : MonoBehaviour
             GameManager.Instance.EquipItem(Item);
         else
             GameManager.Instance.UnequipItem(Item);
-            
-        
     }
 
     public void SetEquippedIcon(bool isEquipped)

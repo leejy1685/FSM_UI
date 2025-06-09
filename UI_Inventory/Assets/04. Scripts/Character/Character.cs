@@ -4,12 +4,14 @@ using UnityEngine;
 
 public class Character : MonoBehaviour
 {
+    [SerializeField] private int inventorySize;
+
     public CharacterData Data { get; private set; }
     public CharacterAnimation CharacterAnimation { get; private set; }
     public List<ItemData> Inventory { get; private set; }
-
     public ItemData EquippedWeapon { get; private set; }
     public ItemData EquippedArmor { get; private set; }
+    public int InventorySize { get => inventorySize; }
 
     public void SetData(CharacterData data, ItemData[] itemData = null)
     {
@@ -25,7 +27,8 @@ public class Character : MonoBehaviour
 
     public void AddItem(ItemData item)
     {
-        Inventory.Add(item);
+        if(inventorySize > Inventory.Count)
+            Inventory.Add(item);
     }
 
     public void Equip(ItemData item)
