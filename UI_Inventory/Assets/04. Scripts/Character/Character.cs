@@ -5,6 +5,7 @@ using UnityEngine;
 public class Character : MonoBehaviour
 {
     public CharacterData Data { get; private set; }
+    public CharacterAnimation CharacterAnimation { get; private set; }
     public List<ItemData> Inventory { get; private set; }
 
     public ItemData EquippedWeapon { get; private set; }
@@ -16,6 +17,8 @@ public class Character : MonoBehaviour
 
         if (itemData == null)
             return;
+        
+        CharacterAnimation = GetComponent<CharacterAnimation>();
 
         Inventory = new List<ItemData>(itemData);
     }

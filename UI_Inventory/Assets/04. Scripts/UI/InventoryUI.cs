@@ -1,3 +1,4 @@
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -15,12 +16,13 @@ public class InventoryUI : BaseUI
 
     private List<SlotUI> _slots = new List<SlotUI>();
     private Character _player;
-    private int _selectedSlot;
+    private Animator _animator;
     
     public override void Init(UIManager uiManager)
     {
         base.Init(uiManager);
 
+        _animator = GetComponent<Animator>();
         _player = GameManager.Instance.Player;
 
         SetSlot();
@@ -34,11 +36,12 @@ public class InventoryUI : BaseUI
     {
         UpdateUI();
         gameObject.SetActive(true);
+        StartCoroutine(EnterAnim_Coroutine());
     }
     
     public override void Exit()
     {
-        gameObject.SetActive(false);
+        StartCoroutine(ExitAnim_Coroutine());
     }
 
     public override void UpdateUI()
@@ -58,7 +61,23 @@ public class InventoryUI : BaseUI
         _uiManager.ChangeState(_uiManager.MainMenuUI);
     }
 
-    //개선 여지 다수
+    IEnumerator EnterAnim_Coroutine()
+    {
+        _animator.speed = 0;
+        
+        _player.CharacterAnimation.Jump();
+        yield return new WaitForSeconds(_player.CharacterAnimation.AnimationLength());
+        _animator.speed = 1f;
+    }
+    
+    IEnumerator ExitAnim_Coroutine()
+    {
+        _animator.SetTrigger(_uiManager.ExitAnim);
+        yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
+        gameObject.SetActive(false);
+    }
+
+    //개선 여지
     private void SetSlot()
     {
         //슬록의 사이즈 구하기

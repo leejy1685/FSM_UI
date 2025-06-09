@@ -39,9 +39,8 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
-        
-        //test
-        _player = new GameObject("Player").AddComponent<Character>();
+
+        _player = FindAnyObjectByType<Character>();
         SetData();
     }
     
