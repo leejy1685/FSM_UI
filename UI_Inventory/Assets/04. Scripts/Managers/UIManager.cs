@@ -15,6 +15,20 @@ public enum UIState
     
 public class UIManager : MonoBehaviour
 {
+    private static UIManager _instance;
+    public static UIManager Instance
+    {
+        get
+        {
+            if (_instance == null)
+            {
+                _instance = new GameObject("UIManager").AddComponent<UIManager>();
+            }
+
+            return _instance;
+        }
+    }
+    
     private UIState _currentState;
     
     private MainMenuUI _mainMenuUI;
@@ -23,6 +37,20 @@ public class UIManager : MonoBehaviour
 
     private void Awake()
     {
+        if (_instance == null)
+        {
+            _instance = this;
+        }
+        else if (_instance != this)
+        {
+            Destroy(gameObject);
+        }
+
+
+    }
+    private void Start()
+    {
+
         _mainMenuUI = GetComponentInChildren<MainMenuUI>(true);
         _mainMenuUI.Init(this);
         _statusUI = GetComponentInChildren<StatusUI>(true);

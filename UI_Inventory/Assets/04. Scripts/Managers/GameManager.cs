@@ -18,7 +18,17 @@ public class GameManager : MonoBehaviour
             return _instance;
         }
     }
-
+    
+    private Character _player;
+    public Character Player
+    {
+        get { return _player; }
+    }
+    
+    [SerializeField] private CharacterData playerData;
+    
+    [SerializeField] private ItemData[] itemData;
+    
     private void Awake()
     {
         if (_instance == null)
@@ -29,11 +39,15 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        
+        //test
+        _player = new GameObject("Player").AddComponent<Character>();
+        SetData();
     }
-
-    [SerializeField] private Character player;
-    public Character Player
+    
+    public void SetData()
     {
-        get { return player; }
+        _player.SetData(playerData, itemData);
     }
+    
 }

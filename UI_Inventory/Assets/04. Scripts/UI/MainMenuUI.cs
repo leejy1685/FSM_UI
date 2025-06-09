@@ -30,8 +30,8 @@ public class MainMenuUI : BaseUI
         UpdatePlayerInfo();
         
         //버튼 등록
-        statusButton.onClick.AddListener(OnClickStatus);
-        inventoryButton.onClick.AddListener(OnClickInventory);
+        statusButton.onClick.AddListener(OpenStatus);
+        inventoryButton.onClick.AddListener(OpenInventory);
     }
 
 
@@ -47,20 +47,20 @@ public class MainMenuUI : BaseUI
 
     public void UpdatePlayerInfo()
     {
-        grade.text = _player.grade;
-        name.text = _player.name;
-        level.text = _player.level.ToString();
-        exp.value = (float)_player.exp / _player.maxExp;
-        expText.text = $"{_player.exp} / {_player.maxExp}";
-        desc.text = _player.desc;
-        gold.text = _player.gold.ToString("C");
+        grade.text = _player.Data.grade;
+        name.text = _player.Data.name;
+        level.text = _player.Data.level.ToString();
+        exp.value = (float)_player.Data.exp / _player.Data.maxExp;
+        expText.text = $"{_player.Data.exp} / {_player.Data.maxExp}";
+        desc.text = _player.Data.desc;
+        gold.text = _player.Data.gold.ToString("C");
     }
 
-    private void OnClickStatus()
+    private void OpenStatus()
     {
         _uiManager.ChangeState(UIState.Status);
     }
-    private void OnClickInventory()
+    private void OpenInventory()
     {
         _uiManager.ChangeState(UIState.Inventory);
     }

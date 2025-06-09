@@ -25,7 +25,7 @@ public class StatusUI : BaseUI
         UpdateStatus();
         
         //버튼 등록;
-        backButton.onClick.AddListener(OnClickBackButton);
+        backButton.onClick.AddListener(OpenMainMenu);
     }
 
     protected override UIState GetState()
@@ -35,13 +35,13 @@ public class StatusUI : BaseUI
 
     public void UpdateStatus()
     {
-        atk.text = _player.atk.ToString();
-        def.text = _player.def.ToString();
-        hp.text = _player.hp.ToString();
-        crt.text = _player.cri.ToString();
+        atk.text = _player.Data.atk.ToString();
+        def.text = _player.Data.def.ToString();
+        hp.text = _player.Data.hp.ToString();
+        crt.text = _player.Data.cri.ToString();
     }
     
-    private void OnClickBackButton()
+    private void OpenMainMenu()
     {
         _uiManager.ChangeState(UIState.MainMenu);
     }

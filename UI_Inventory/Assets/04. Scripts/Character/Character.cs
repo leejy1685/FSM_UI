@@ -2,24 +2,33 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-[CreateAssetMenu (fileName = "Character", menuName = "New Character")]
-public class Character : ScriptableObject
+public class Character : MonoBehaviour
 {
-    [Header("PlayerInfo")]
-    public string grade;
-    public string name;
-    public int level;
-    public int exp;
-    public int maxExp;
-    public string desc;
-    public int gold;
+    public CharacterData Data { get; private set; }
+    public List<ItemData> Inventory { get; private set; }
 
-    [Header("Status")]
-    public int atk;
-    public int def;
-    public int hp;
-    public int cri;
+    public void SetData(CharacterData data, ItemData[] itemData = null)
+    {
+        Data = data;
+
+        if (itemData == null)
+            return;
+        
+        Inventory = new List<ItemData>(itemData);
+    }
+
+    public void AddItem(ItemData item)
+    {
+        Inventory.Add(item);
+    }
     
-    
-    
+    public void Equip(ItemData item)
+    {
+        
+    }
+
+    public void Unequip(ItemData item)
+    {
+        
+    }
 }
