@@ -41,10 +41,10 @@ public class StatusUI : BaseUI
 
     public void UpdateStatus()
     {
-        atk.text = _player.Data.atk.ToString() + (_player.EquippedWeapon ? $"+ {_player.EquippedWeapon.weaponData.atk}" : "");
-        crt.text = _player.Data.cri.ToString() + (_player.EquippedWeapon ? $"+ {_player.EquippedWeapon.weaponData.cri}" : "");
-        def.text = _player.Data.def.ToString() + (_player.EquippedArmor ? $"+ {_player.EquippedArmor.armorData.def}" : "");
-        hp.text = _player.Data.hp.ToString() + (_player.EquippedArmor ? $"+ {_player.EquippedArmor.armorData.hp}" : "");
+        atk.text = _player.Data.atk.ToString() + (_player.EquippedWeapon ? $" (+ {_player.EquippedWeapon.weaponData.atk})" : "");
+        crt.text = _player.Data.cri.ToString() + (_player.EquippedWeapon ? $" (+ {_player.EquippedWeapon.weaponData.cri})" : "");
+        def.text = _player.Data.def.ToString() + (_player.EquippedArmor ? $" (+ {_player.EquippedArmor.armorData.def})" : "");
+        hp.text = _player.Data.hp.ToString() + (_player.EquippedArmor ? $" (+ {_player.EquippedArmor.armorData.hp})" : "");
     }
     
     private void OpenMainMenu()

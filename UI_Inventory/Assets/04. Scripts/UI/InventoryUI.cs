@@ -82,7 +82,9 @@ public class InventoryUI : BaseUI
     {
         for (int i = 0; i < _slots.Count; i++)
         {
-            if((_player.EquippedWeapon|| _player.EquippedArmor) == _slots[i].Item && _slots[i].Item != null)
+            if(_player.EquippedWeapon == _slots[i].Item && _slots[i].Item != null) 
+                _slots[i].SetEquippedIcon(true);
+            else if(_player.EquippedArmor == _slots[i].Item && _slots[i].Item != null)
                 _slots[i].SetEquippedIcon(true);
             else
                 _slots[i].SetEquippedIcon(false);
