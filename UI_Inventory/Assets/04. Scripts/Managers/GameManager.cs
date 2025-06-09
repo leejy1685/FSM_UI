@@ -50,4 +50,21 @@ public class GameManager : MonoBehaviour
         _player.SetData(playerData, itemData);
     }
     
+    public void EquipItem(ItemData item)
+    {
+        //장착
+        _player.Equip(item);
+        
+        //UI 갱신
+        UIManager.Instance.UpdateUI();
+        
+    }
+
+    public void UnequipItem(ItemData item)
+    {
+        _player.Unequip(item.type);
+        
+        UIManager.Instance.UpdateUI();
+    }
+    
 }

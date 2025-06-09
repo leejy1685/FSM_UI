@@ -50,7 +50,6 @@ public class UIManager : MonoBehaviour
     }
     private void Start()
     {
-
         _mainMenuUI = GetComponentInChildren<MainMenuUI>(true);
         _mainMenuUI.Init(this);
         _statusUI = GetComponentInChildren<StatusUI>(true);
@@ -69,4 +68,22 @@ public class UIManager : MonoBehaviour
         _statusUI.SetActive(_currentState);
         _inventoryUI.SetActive(_currentState);
     }
+
+    public void UpdateUI()
+    {
+        switch (_currentState)
+        {
+            case UIState.MainMenu:
+                _mainMenuUI.UpdatePlayerInfo();
+                break;
+            case UIState.Inventory:
+                _inventoryUI.UpdateInventory();
+                break;
+            case UIState.Status:
+                _statusUI.UpdateStatus();
+                break;
+        }
+    }
+
+
 }

@@ -33,12 +33,18 @@ public class StatusUI : BaseUI
         return UIState.Status;
     }
 
+    public override void SetActive(UIState state)
+    {
+        UpdateStatus();
+        base.SetActive(state);
+    }
+
     public void UpdateStatus()
     {
-        atk.text = _player.Data.atk.ToString();
-        def.text = _player.Data.def.ToString();
-        hp.text = _player.Data.hp.ToString();
-        crt.text = _player.Data.cri.ToString();
+        atk.text = _player.Data.atk.ToString() + (_player.EquippedWeapon ? $"+ {_player.EquippedWeapon.weaponData.atk}" : "");
+        crt.text = _player.Data.cri.ToString() + (_player.EquippedWeapon ? $"+ {_player.EquippedWeapon.weaponData.cri}" : "");
+        def.text = _player.Data.def.ToString() + (_player.EquippedArmor ? $"+ {_player.EquippedArmor.armorData.def}" : "");
+        hp.text = _player.Data.hp.ToString() + (_player.EquippedArmor ? $"+ {_player.EquippedArmor.armorData.hp}" : "");
     }
     
     private void OpenMainMenu()

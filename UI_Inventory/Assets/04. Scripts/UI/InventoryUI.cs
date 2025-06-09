@@ -15,6 +15,7 @@ public class InventoryUI : BaseUI
 
     private List<SlotUI> _slots = new List<SlotUI>();
     private Character _player;
+    private int _selectedSlot;
     
     public override void Init(UIManager uiManager)
     {
@@ -63,13 +64,28 @@ public class InventoryUI : BaseUI
                 slotUI.SetItem(_player.Inventory[i]);
             
             _slots.Add(slotUI);
-            
-            
         }
+    }
+    
+    public override void SetActive(UIState state)
+    {
+        UpdateInventory();
+        base.SetActive(state);
     }
 
     private void OpenMainMenu()
     {
         _uiManager.ChangeState(UIState.MainMenu);
+    }
+
+    public void UpdateInventory()
+    {
+        for (int i = 0; i < _slots.Count; i++)
+        {
+            if((_player.EquippedWeapon|| _player.EquippedArmor) == _slots[i].Item && _slots[i].Item != null)
+                _slots[i].SetEquippedIcon(true);
+            else
+                _slots[i].SetEquippedIcon(false);
+        }
     }
 }
