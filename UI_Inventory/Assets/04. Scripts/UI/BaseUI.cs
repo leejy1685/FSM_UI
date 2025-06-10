@@ -19,6 +19,7 @@ public abstract class BaseUI : MonoBehaviour, IUIState
 
     public virtual void Enter()
     {
+        UpdateUI();
         gameObject.SetActive(true);
     }
 
@@ -30,5 +31,15 @@ public abstract class BaseUI : MonoBehaviour, IUIState
     public virtual void UpdateUI()
     {
         
+    }
+    
+    protected void StartAnimation(int animationHash)
+    {
+        _uiManager.Animator.SetBool(animationHash, true);
+    }
+
+    protected void StopAnimation(int animationHash)
+    {
+        _uiManager.Animator.SetBool(animationHash, false);
     }
 }

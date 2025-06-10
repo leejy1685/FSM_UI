@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using UnityEngine;
     
 public class UIManager : MonoBehaviour
@@ -16,12 +17,15 @@ public class UIManager : MonoBehaviour
         }
     }
     
+    [field: SerializeField] public UIAnimationData AnimationData { get; private set; }
+    
     private BaseUI _currentState;
     
+    public Animator Animator { get; private set; }
     public MainMenuUI MainMenuUI { get; private set; }
     public StatusUI StatusUI{ get; private set; }
     public InventoryUI InventoryUI{ get; private set; }
-
+    
     private void Awake()
     {
         if (_instance == null)
@@ -32,10 +36,12 @@ public class UIManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        
+        AnimationData = new UIAnimationData();
+        AnimationData.Initialize();
+        Animator = GetComponent<Animator>();
+        Animator.speed = 1f;
     }
-    
-    private const string EXITANIM = "IsExit";
-    public string ExitAnim {get => EXITANIM; }
     
     private void Start()
     {
@@ -45,16 +51,20 @@ public class UIManager : MonoBehaviour
         StatusUI.Init(this);
         InventoryUI = GetComponentInChildren<InventoryUI>(true);
         InventoryUI.Init(this);
-
+        
         _currentState = MainMenuUI;
-        ChangeState(MainMenuUI);
+        _currentState.Enter();
     }
 
-    public void ChangeState(BaseUI state)
-    {
 
-        _currentState.Exit();
-        _currentState = state;
+    public async void ChangeState(BaseUI newState)
+    {
+        _currentState?.Exit();
+        
+        var animLength = Animator.GetCurrentAnimatorStateInfo(0).length;
+        await Task.Delay(Mathf.RoundToInt(animLength * 1000));
+        
+        _currentState = newState;
         _currentState.Enter();
     }
 

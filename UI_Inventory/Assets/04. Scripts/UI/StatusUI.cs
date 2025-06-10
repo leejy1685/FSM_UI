@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -21,29 +22,42 @@ public class StatusUI : BaseUI
         base.Init(uiManager);
 
         _animator = GetComponent<Animator>();
-        _animator.speed = 0.1f;
         _player = GameManager.Instance.Player;
         
         //버튼 등록;
         backButton.onClick.AddListener(OpenMainMenu);
     }
 
-    public override void Enter()
+    public override async void Enter()
     {
-        UpdateUI();
-        gameObject.SetActive(true);
+        base.Enter();
+        
+        StartAnimation(_uiManager.AnimationData.StatusParameterName);
+
+        var animLength = _uiManager.Animator.GetCurrentAnimatorStateInfo(0).length;
+        await Task.Delay(Mathf.RoundToInt(animLength * 1000));
+        
+        StartAnimation(_uiManager.AnimationData.IdleParameterName);
     }
     
-    public override void Exit()
+    
+    public override async void Exit()
     {
-        StartCoroutine(ExitAnim_Coroutine());
+        
+        StopAnimation(_uiManager.AnimationData.IdleParameterName);
+        StartAnimation(_uiManager.AnimationData.ExitParameterName);
+        
+        var animLength = _uiManager.Animator.GetCurrentAnimatorStateInfo(0).length;
+        await Task.Delay(Mathf.RoundToInt(animLength * 1000));
+        
+        StopAnimation(_uiManager.AnimationData.StatusParameterName);
+        StopAnimation(_uiManager.AnimationData.ExitParameterName);
+
+        
+        base.Exit();
     }
-    IEnumerator ExitAnim_Coroutine()
-    {
-        _animator.SetTrigger(_uiManager.ExitAnim);
-        yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
-        gameObject.SetActive(false);
-    }
+
+
 
     public override void UpdateUI()
     {

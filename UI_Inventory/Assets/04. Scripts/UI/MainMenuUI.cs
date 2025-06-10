@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.Net.Mime;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -26,20 +27,37 @@ public class MainMenuUI : BaseUI
         base.Init(uiManager);
 
         _player = GameManager.Instance.Player;
+
         
         //버튼 등록
         statusButton.onClick.AddListener(OpenStatus);
         inventoryButton.onClick.AddListener(OpenInventory);
     }
 
-    public override void Enter()
+    public override async void Enter()
     {
         UpdateUI();
         buttons.SetActive(true);
+        
+        StartAnimation(_uiManager.AnimationData.MainMenuParameterHash);
+
+        var animLength = _uiManager.Animator.GetCurrentAnimatorStateInfo(0).length;
+        await Task.Delay(Mathf.RoundToInt(animLength * 1000));
+        
+        StartAnimation(_uiManager.AnimationData.IdleParameterName);
     }
 
-    public override void Exit()
+    public override async void Exit()
     {
+        StopAnimation(_uiManager.AnimationData.IdleParameterName);
+        StartAnimation(_uiManager.AnimationData.ExitParameterName);
+        
+        var animLength = _uiManager.Animator.GetCurrentAnimatorStateInfo(0).length;
+        await Task.Delay(Mathf.RoundToInt(animLength * 1000));
+        
+        StopAnimation(_uiManager.AnimationData.MainMenuParameterHash);
+        StopAnimation(_uiManager.AnimationData.ExitParameterName);
+        
         buttons.SetActive(false);
     }
 

@@ -1109,6 +1109,7 @@ GameObject:
   - component: {fileID: 181634919}
   - component: {fileID: 181634918}
   - component: {fileID: 181634922}
+  - component: {fileID: 181634923}
   m_Layer: 5
   m_Name: UIManager
   m_TagString: Untagged
@@ -1211,6 +1212,33 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 159e6b0d518354b49921960e48e943b9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  <AnimationData>k__BackingField:
+    mainMenuParameterName: '@MainMenu'
+    statusParameterName: '@Status'
+    inventoryParameterName: '@Inventory'
+    enterParameterName: IsEnter
+    exitParameterName: IsExit
+--- !u!95 &181634923
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 181634917}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 84543e3f6bd5a984b822629ac6c01a4a, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &270222919
 GameObject:
   m_ObjectHideFlags: 0
@@ -1551,7 +1579,6 @@ GameObject:
   m_Component:
   - component: {fileID: 355752300}
   - component: {fileID: 355752301}
-  - component: {fileID: 355752302}
   m_Layer: 5
   m_Name: UIInventory
   m_TagString: Untagged
@@ -1600,27 +1627,6 @@ MonoBehaviour:
   slots: {fileID: 58844763}
   slot: {fileID: 679543709809658980, guid: 44c7dca166f87134b94d46576b9b21fb, type: 3}
   slotInterval: 5
---- !u!95 &355752302
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 355752299}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: d5827c10fef26534ead5eca90f66a9c3, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &386371416
 GameObject:
   m_ObjectHideFlags: 0
@@ -2844,7 +2850,6 @@ GameObject:
   m_Component:
   - component: {fileID: 949405631}
   - component: {fileID: 949405632}
-  - component: {fileID: 949405633}
   m_Layer: 5
   m_Name: UIStatus
   m_TagString: Untagged
@@ -2895,27 +2900,6 @@ MonoBehaviour:
   hp: {fileID: 1400721634}
   crt: {fileID: 1073225683}
   backButton: {fileID: 1394965530}
---- !u!95 &949405633
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 949405630}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 266bec634f0ac854692dabff9e7d8e39, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
 --- !u!1 &1058902656
 GameObject:
   m_ObjectHideFlags: 0
@@ -2927,9 +2911,7 @@ GameObject:
   - component: {fileID: 1058902657}
   - component: {fileID: 1058902659}
   - component: {fileID: 1058902658}
-  - component: {fileID: 1058902660}
   - component: {fileID: 1058902662}
-  - component: {fileID: 1058902661}
   m_Layer: 5
   m_Name: Player
   m_TagString: Untagged
@@ -2944,7 +2926,7 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1058902656}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2994,39 +2976,6 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1058902656}
   m_CullTransparentMesh: 1
---- !u!95 &1058902660
-Animator:
-  serializedVersion: 5
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1058902656}
-  m_Enabled: 1
-  m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 844b4aa922c75004b808c267db7fcf34, type: 2}
-  m_CullingMode: 0
-  m_UpdateMode: 0
-  m_ApplyRootMotion: 0
-  m_LinearVelocityBlending: 0
-  m_StabilizeFeet: 0
-  m_WarningMessage: 
-  m_HasTransformHierarchy: 1
-  m_AllowConstantClipSamplingOptimization: 1
-  m_KeepAnimatorStateOnDisable: 0
-  m_WriteDefaultValuesOnDisable: 0
---- !u!114 &1058902661
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1058902656}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8a16205e91e14ed419d88424b8d00e95, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1058902662
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4823,13 +4772,14 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1513228240}
+  - component: {fileID: 1513228241}
   m_Layer: 5
   m_Name: Buttons
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1513228240
 RectTransform:
   m_ObjectHideFlags: 0
@@ -4851,6 +4801,14 @@ RectTransform:
   m_AnchoredPosition: {x: -50, y: 0}
   m_SizeDelta: {x: 160, y: 150}
   m_Pivot: {x: 1, y: 0.5}
+--- !u!222 &1513228241
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1513228239}
+  m_CullTransparentMesh: 1
 --- !u!1 &1760000551
 GameObject:
   m_ObjectHideFlags: 0

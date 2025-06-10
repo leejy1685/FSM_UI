@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -16,14 +17,11 @@ public class InventoryUI : BaseUI
     private int _slotCount;
     private List<SlotUI> _slots = new List<SlotUI>();
     private Character _player;
-    private Animator _animator;
     
     
     public override void Init(UIManager uiManager)
     {
         base.Init(uiManager);
-
-        _animator = GetComponent<Animator>();
         
         _player = GameManager.Instance.Player;
         _slotCount = _player.InventorySize;
@@ -32,33 +30,34 @@ public class InventoryUI : BaseUI
         
         backButton.onClick.AddListener(OpenMainMenu);
     }
-    
 
-    public override void Enter()
+    public override async void Enter()
     {
-        UpdateUI();
-        gameObject.SetActive(true);
-        StartCoroutine(EnterAnim_Coroutine());
-    }
-    IEnumerator EnterAnim_Coroutine()
-    {
-        _animator.speed = 0;
+        base.Enter();
+
+        StartAnimation(_uiManager.AnimationData.InventoryParameterName);
+
+        var animLength = _uiManager.Animator.GetCurrentAnimatorStateInfo(0).length;
+        await Task.Delay(Mathf.RoundToInt(animLength * 1000));
         
-        _player.CharacterAnimation.Jump();
-        yield return new WaitForSeconds(_player.CharacterAnimation.AnimationLength());
-        _animator.speed = 0.1f;
+        StartAnimation(_uiManager.AnimationData.IdleParameterName);
     }
     
-    public override void Exit()
+    public override async void Exit()
     {
-        StartCoroutine(ExitAnim_Coroutine());
+        StopAnimation(_uiManager.AnimationData.IdleParameterName);
+        StartAnimation(_uiManager.AnimationData.ExitParameterName);
+        
+        var animLength = _uiManager.Animator.GetCurrentAnimatorStateInfo(0).length;
+        await Task.Delay(Mathf.RoundToInt(animLength * 1000));
+        
+        StopAnimation(_uiManager.AnimationData.InventoryParameterName);
+        StopAnimation(_uiManager.AnimationData.ExitParameterName);
+
+        
+        base.Exit();
     }
-    IEnumerator ExitAnim_Coroutine()
-    {
-        _animator.SetTrigger(_uiManager.ExitAnim);
-        yield return new WaitForSeconds(_animator.GetCurrentAnimatorStateInfo(0).length);
-        gameObject.SetActive(false);
-    }
+    
 
     public override void UpdateUI()
     {
