@@ -80,7 +80,8 @@ FSM :</br>
 UI 상태를 인터페이스 방식으로 구현 </br>
 Enter, Exit, UdateUI 메서드를 각 상태에 따라서 구현</br>
 
-ScriptableObject : 캐릭터 정보, 아이템 정보 등을 ScriptableObject로 구현하여 데이터 관리 편의성 Up
+ScriptableObject : </br>
+캐릭터 정보, 아이템 정보 등을 ScriptableObject로 구현하여 데이터 관리 편의성 Up
 
 
 
