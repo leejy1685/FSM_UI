@@ -2,16 +2,23 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+//<Summary>
+//캐릭터의 데이터를 받아 실제 캐릭터 역할을 하는 클래스
+//</Summary>
 public class Character : MonoBehaviour
 {
+    //직렬화
     [SerializeField] private int inventorySize;
 
+    //프로퍼티
     public CharacterData Data { get; private set; }
     public List<ItemData> Inventory { get; private set; }
     public ItemData EquippedWeapon { get; private set; }
     public ItemData EquippedArmor { get; private set; }
     public int InventorySize { get => inventorySize; }
 
+    //데이터를 받는 메서드
     public void SetData(CharacterData data, ItemData[] itemData = null)
     {
         Data = data;
@@ -22,12 +29,14 @@ public class Character : MonoBehaviour
         Inventory = new List<ItemData>(itemData);
     }
 
+    //인벤토리에 아이템 추가
     public void AddItem(ItemData item)
     {
         if(inventorySize > Inventory.Count)
             Inventory.Add(item);
     }
 
+    //아이템 장착
     public void Equip(ItemData item)
     {
         switch (item.type)
@@ -49,6 +58,7 @@ public class Character : MonoBehaviour
         }
     }
 
+    //아이템 장착 해제
     public void Unequip(ItemType type)
     {
         switch (type)

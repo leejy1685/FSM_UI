@@ -1,7 +1,9 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
+
+//<Summary>
+//캐릭터의 정보를 보유하는 클래스
+//</Summary>
 [CreateAssetMenu (fileName = "Character", menuName = "New Character")]
 public class CharacterData : ScriptableObject
 {

@@ -1,24 +1,28 @@
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
+
+//<summary>
+//인벤토리 UI 상태
+//</summary>
 public class InventoryUI : BaseUI
 {
+    //직렬화
     [SerializeField] private TextMeshProUGUI inventorySize;
     [SerializeField] private Button backButton;
     [SerializeField] private GameObject slots;
     [SerializeField] private GameObject slot;
-
     [SerializeField] private float slotInterval = 5f;
 
+    //필드
     private int _slotCount;
     private List<SlotUI> _slots = new List<SlotUI>();
     private Character _player;
     
-    
+    //생성
     public override void Init(UIManager uiManager)
     {
         base.Init(uiManager);
@@ -26,39 +30,48 @@ public class InventoryUI : BaseUI
         _player = GameManager.Instance.Player;
         _slotCount = _player.InventorySize;
         
+        //슬롯 생성
         SetSlot();
         
+        //버튼 기능 할당
         backButton.onClick.AddListener(OpenMainMenu);
     }
-
+    
     public override async void Enter()
     {
-        base.Enter();
+        //오브젝트 활성화
+        base.Enter(); 
 
+        //입장 애니메이션
         StartAnimation(_uiManager.AnimationData.InventoryParameterName);
 
+        //애니메이션 시간동안 딜레이
         var animLength = _uiManager.Animator.GetCurrentAnimatorStateInfo(0).length;
         await Task.Delay(Mathf.RoundToInt(animLength * 1000));
         
+        //대기 애니메이션
         StartAnimation(_uiManager.AnimationData.IdleParameterName);
     }
     
     public override async void Exit()
     {
+        //퇴장 애니메이션
         StopAnimation(_uiManager.AnimationData.IdleParameterName);
         StartAnimation(_uiManager.AnimationData.ExitParameterName);
         
+        //애니메이션 시간동안 딜레이
         var animLength = _uiManager.Animator.GetCurrentAnimatorStateInfo(0).length;
         await Task.Delay(Mathf.RoundToInt(animLength * 1000));
         
+        //애니메이션 현재 상태 종료
         StopAnimation(_uiManager.AnimationData.InventoryParameterName);
         StopAnimation(_uiManager.AnimationData.ExitParameterName);
-
         
         base.Exit();
     }
     
 
+    //UI 갱신
     public override void UpdateUI()
     {
         inventorySize.text = $"{_player.Inventory.Count} / {_slotCount}";
@@ -76,12 +89,14 @@ public class InventoryUI : BaseUI
                 _slots[i].SetEquippedIcon(false);
         }
     }
+    
+    //상태 변경
     private void OpenMainMenu()
     {
         _uiManager.ChangeState(_uiManager.MainMenuUI);
     }
     
-    //개선 여지
+    //슬롯 생성, 개선 여지 있음
     private void SetSlot()
     {
         //슬록의 사이즈 구하기
