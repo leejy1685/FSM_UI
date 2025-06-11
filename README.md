@@ -46,13 +46,13 @@ Inventory 버튼을 눌러 인벤토리를 확인할 수 있습니다. </br>
 
 ![image](https://github.com/user-attachments/assets/6276c10e-2e57-4d20-a302-174d336b36af)
 
-MainMenuUI : </br>
+MainMenuUI  </br>
   Enter : 버튼만 FadeIn </br>
   Exit  : 버튼만 FadeOut</br>
 
 ![image](https://github.com/user-attachments/assets/e3a9ac6c-00eb-4533-9ef8-cc5f4b5630a0)
 
-Status : </br>
+Status  </br>
   Enter : 캐릭터 몸에서 나오는 연출</br>
   Exit  : 캐릭터 몸으로 돌아가는 연출</br>
 
@@ -60,7 +60,7 @@ Status : </br>
 ![image](https://github.com/user-attachments/assets/05078d68-11ee-437f-b6e5-0c2dc52a588f)
 ![image](https://github.com/user-attachments/assets/48f43dd1-027b-4306-a2f9-40d0410bcf5c)
 
-Inventroy : </br>
+Inventroy </br>
   Enter : 캐릭터가 점프해서 인벤토리 창을 가지고 내려오는 연출</br>
   Exit  : 인벤토리가 올라가는 연출</br>
 
@@ -76,8 +76,9 @@ Inventroy : </br>
  
 ### 사용 기술
 
-FSM : UI 형태를 인터페이스 방식으로 구현 </br>
-      Enter, Exit, UdateUI 메서드를 각 상태에 따라서 구현
+FSM :</br>
+UI 형태를 인터페이스 방식으로 구현 </br>
+Enter, Exit, UdateUI 메서드를 각 상태에 따라서 구현</br>
 
 ScriptableObject : 캐릭터 정보, 아이템 정보 등을 ScriptableObject로 구현하여 데이터 관리 편의성 Up
 
