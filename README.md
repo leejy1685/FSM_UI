@@ -32,6 +32,8 @@ Status 버튼을 눌러 캐릭터의 스텟을 확인할 수 있습니다. </br>
 
 #### ◇ 인벤토리 기능
 
+![image](https://github.com/user-attachments/assets/e20b294b-b9b6-41ac-9bf0-cad25641801f)
+
 Inventory 버튼을 눌러 인벤토리를 확인할 수 있습니다. </br>
 원하는 아이템에 좌클릭을 하면 아이템을 장착 할 수 있습니다.</br>
 
